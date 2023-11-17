@@ -63,9 +63,14 @@ public class GUILogin {
         loginbtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                getData();
-                JOptionPane.showMessageDialog(null,"Sukses","Info",JOptionPane.INFORMATION_MESSAGE);
-                new GUIGame();
+                Users user = getData();
+                if (user != null && user.getPassword().equals(new String(fieldPass.getPassword()))) {
+                    JOptionPane.showMessageDialog(null, "Login Sukses", "Info", JOptionPane.INFORMATION_MESSAGE);
+                    frame.dispose();
+                    new GUIGame();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Login Gagal. Email atau password salah.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         panel.add(loginbtn,new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
